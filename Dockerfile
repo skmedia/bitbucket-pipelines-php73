@@ -58,6 +58,7 @@ RUN locale-gen en_US.UTF-8
 
 # Timezone & memory limit
 RUN echo "date.timezone=Europe/Paris" > /etc/php/7.3/cli/conf.d/date_timezone.ini && echo "memory_limit=1G" >> /etc/php/7.3/apache2/php.ini
+RUN sudo update-alternatives --set php /usr/bin/php7.3
 
 # Goto temporary directory.
 WORKDIR /tmp
