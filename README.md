@@ -25,3 +25,10 @@ pipelines:
           - composer install --no-interaction --no-progress --prefer-dist
           - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
 ```
+
+### Build and push
+
+```
+docker build -t skmedia/bitbucket-pipelines-php73 .
+docker push skmedia/bitbucket-pipelines-php73
+```

@@ -14,6 +14,14 @@ RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common curl sudo
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh && \
+    sudo bash nodesource_setup.sh
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     software-properties-common \
     git \
@@ -35,6 +43,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     add-apt-repository ppa:ondrej/php
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
 
 # Install packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
